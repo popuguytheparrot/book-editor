@@ -57,7 +57,8 @@ const common = merge([
       // new BundleAnalyzerPlugin(),
       new HtmlWebPackPlugin({
         template: `${PATH.src}/index.ejs`,
-        title: 'book-editor'
+        title: 'book-editor',
+        lang: 'en'
       })
     ]
   },

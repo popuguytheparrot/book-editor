@@ -1,0 +1,34 @@
+[
+  {
+    "id": "1",
+    "title": "Война и мир",
+    "image": "",
+    "authors": [
+      {
+        "name": "Лев",
+        "surname": "Толстой"
+      }
+    ],
+    "pageCount": "1408",
+    "publishingHouse": "Азбука",
+    "publishYear": "1868",
+    "released": "2014",
+    "ISBN": "978-5-389-07123-0"
+  },
+  {
+    "id": "2",
+    "title": "451° по Фаренгейту",
+    "image": "",
+    "authors": [
+      {
+        "name": "Рэй",
+        "surname": "Брэдбери"
+      }
+    ],
+    "pageCount": "512",
+    "publishingHouse": "Эксмо",
+    "publishYear": "1953",
+    "released": "2017",
+    "ISBN": "978-5-699-92380-9"
+  }
+]

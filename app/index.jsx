@@ -1,17 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { MuiThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 
 import { Routes } from 'routes';
 // theming and styling
-import theme from './theme';
+import { theme } from './theme';
 
 function App() {
   return (
     <MuiThemeProvider theme={theme}>
+      <CssBaseline />
       <AppBar position="static" color="default">
         <Toolbar>
           <Typography variant="h6" color="inherit">

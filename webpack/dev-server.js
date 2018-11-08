@@ -11,6 +11,7 @@ module.exports = () => ({
     port: 8080,
     publicPath: '/',
     overlay: true,
+    clientLogLevel: 'error',
     headers: {
       'Access-Control-Allow-Origin': '*'
     }

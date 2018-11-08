@@ -2,7 +2,7 @@ import React from 'react';
 import { Router } from '@reach/router';
 // routes
 import { NotFound } from 'pages/NotFound';
-import { Home } from 'pages/Home';
+import { withReduxHome as Home } from 'pages/Home';
 
 export const Routes = () => (
   <Router>

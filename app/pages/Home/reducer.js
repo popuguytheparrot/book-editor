@@ -2,7 +2,8 @@ import { GET_BOOKS } from 'pages/Home/types';
 import books from 'mocks/books';
 
 const initState = {
-  loaded: false
+  loaded: false,
+  books: []
 };
 
 export function booksReducer(state = initState, action) {

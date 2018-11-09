@@ -8,7 +8,7 @@ import { BooksList } from 'components/BooksList';
 
 import { deleteBookAction, editBookAction, getBooksAction } from './actions';
 
-class Home extends Component {
+class HomePage extends Component {
   static propTypes = {
     getBooks: func.isRequired,
     books: arrayOf(object).isRequired,
@@ -16,8 +16,8 @@ class Home extends Component {
   };
 
   componentDidMount() {
-    const { getBooks } = this.props;
-    getBooks();
+    const { getBooks, loaded } = this.props;
+    if (!loaded) getBooks();
   }
 
   render() {
@@ -50,7 +50,7 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export const withReduxHome = connect(
+export const withReduxHomePage = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Home);
+)(HomePage);

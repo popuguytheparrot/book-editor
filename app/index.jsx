@@ -40,7 +40,7 @@ function App() {
         </Toolbar>
       </AppBar>
       <Routes />
-      <Button variant="fab" color="primary" style={style.fab} component={Link} to="/add-book">
+      <Button variant="fab" color="primary" style={style.fab} component={Link} to="/book/add">
         <AddIcon />
       </Button>
     </MuiThemeProvider>

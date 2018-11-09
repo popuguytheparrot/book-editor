@@ -27,12 +27,13 @@ const styles = theme => ({
 });
 
 function renderAuthors(authors) {
-  console.log('authors', authors);
   if (authors.length === 1) {
     const [author] = authors;
     return `Автор: ${author.name} ${author.surname}`;
   }
-  return authors.reduce((acc, author) => acc.join(), '');
+  return authors
+    .reduce((acc, author) => acc.concat(`${author.name} ${author.surname}, `), '')
+    .slice(0, -2);
 }
 
 function BooksListItem({
@@ -59,7 +60,7 @@ function BooksListItem({
         <Grid item xs={6} sm container>
           <Grid item xs container direction="row" spacing={16} style={{ width: 'auto' }}>
             <Grid item xs>
-              <Typography gutterBottom variant="headline">
+              <Typography gutterBottom variant="h5">
                 {title}
               </Typography>
               <Typography gutterBottom>{`${renderAuthors(authors)}`}</Typography>

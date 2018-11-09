@@ -30,6 +30,7 @@
   },
   "rules": {
     "prettier/prettier": "error",
+    "react/prop-types": "off",
     "global-require": "off",
     "import/extensions": "off",
     "import/no-unresolved": "off",

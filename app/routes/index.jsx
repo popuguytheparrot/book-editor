@@ -2,11 +2,14 @@ import React from 'react';
 import { Router } from '@reach/router';
 // routes
 import { NotFound } from 'pages/NotFound';
-import { withReduxHome as Home } from 'pages/Home';
+import { withReduxHomePage as HomePage } from 'pages/Home';
+import { withReduxAddBookPage as AddBookPage } from 'pages/Book/AddBook';
+// import { withReduxHomePage as HomePage } from 'pages/Home';
 
 export const Routes = () => (
   <Router>
-    <Home path="/" />
+    <HomePage path="/" />
+    <AddBookPage path="/book/add" />
     <NotFound default />
   </Router>
 );

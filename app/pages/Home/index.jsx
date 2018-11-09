@@ -6,7 +6,7 @@ import Grid from '@material-ui/core/Grid';
 
 import { BooksList } from 'components/BooksList';
 
-import { getBooksAction } from './actions';
+import { deleteBookAction, editBookAction, getBooksAction } from './actions';
 
 class Home extends Component {
   static propTypes = {
@@ -21,13 +21,11 @@ class Home extends Component {
   }
 
   render() {
-    const { books, loaded } = this.props;
+    const { books, loaded, editBook, deleteBook } = this.props;
     if (!loaded) return null;
     return (
       <Grid container justify="center" component="main">
-        <Grid item>
-          <BooksList books={books} />
-        </Grid>
+        <BooksList books={books} onEditBook={editBook} onDeleteBook={deleteBook} />
       </Grid>
     );
   }
@@ -42,6 +40,12 @@ function mapDispatchToProps(dispatch) {
   return {
     getBooks() {
       dispatch(getBooksAction());
+    },
+    editBook(book) {
+      dispatch(editBookAction(book));
+    },
+    deleteBook(id) {
+      dispatch(deleteBookAction(id));
     }
   };
 }

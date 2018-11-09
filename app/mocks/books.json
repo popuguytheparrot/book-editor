@@ -2,7 +2,7 @@
   {
     "id": "1",
     "title": "Война и мир",
-    "image": "",
+    "image": "https://ozon-st.cdn.ngenix.net/multimedia/1012465389.jpg",
     "authors": [
       {
         "name": "Лев",
@@ -18,7 +18,7 @@
   {
     "id": "2",
     "title": "451° по Фаренгейту",
-    "image": "",
+    "image": "https://img-gorod.ru/upload/iblock/b16/b16c009bcd82c66021eb93856360029b.jpg",
     "authors": [
       {
         "name": "Рэй",

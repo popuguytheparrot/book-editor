@@ -17,14 +17,15 @@ const isProd = process.env.NODE_ENV === 'production';
 
 const PATH = {
   src: join(__dirname, 'src'),
-  build: join(__dirname, 'build')
+  build: join(__dirname, 'build'),
+  app: join(__dirname, 'src', 'index.js')
 };
 
 const common = merge([
   {
     context: resolve(__dirname),
     entry: {
-      app: ['./src/index.js']
+      app: PATH.app
     },
     output: {
       path: PATH.build,
@@ -39,6 +40,7 @@ const common = merge([
       alias: {
         actions: resolve(__dirname, 'app', 'actions'),
         components: resolve(__dirname, 'app', 'components'),
+        libs: resolve(__dirname, 'lib'),
         mocks: resolve(__dirname, 'app', 'mocks'),
         pages: resolve(__dirname, 'app', 'pages'),
         reducers: resolve(__dirname, 'app', 'reducers'),

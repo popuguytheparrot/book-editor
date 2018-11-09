@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography';
 
 import BooksListItem from 'components/BooksListItem';
 
-function renderBooks(books) {
+function renderBooks(books,onDeleteBook) {
   if (books.length > 0) {
     return books.map(book => (
       <BooksListItem
@@ -17,12 +17,13 @@ function renderBooks(books) {
         publishingHouse={book.publishingHouse}
         publishYear={book.publishYear}
         released={book.released}
+        onDeleteBook={onDeleteBook}
       />
     ));
   }
   return <Typography variant="h2">Ой, что-то пошло не так</Typography>;
 }
 
-export function BooksList({ books }) {
-  return renderBooks(books);
+export function BooksList({ books, onEditBook, onDeleteBook }) {
+  return renderBooks(books,onDeleteBook);
 }

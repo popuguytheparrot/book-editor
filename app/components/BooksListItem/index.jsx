@@ -85,16 +85,12 @@ function BooksListItem({
           </Grid>
           <Grid item container justify="space-between">
             <Grid item>
-              <IconButton aria-label="Delete" className={classes.button}>
+              <IconButton aria-label="Delete">
                 <Edit fontSize="small" />
               </IconButton>
             </Grid>
             <Grid item>
-              <IconButton
-                aria-label="Delete"
-                className={classes.button}
-                onClick={() => onDeleteBook(id)}
-              >
+              <IconButton aria-label="Delete" onClick={() => onDeleteBook(id)}>
                 <Delete fontSize="small" />
               </IconButton>
             </Grid>

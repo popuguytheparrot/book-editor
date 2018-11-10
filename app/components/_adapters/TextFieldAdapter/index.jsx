@@ -13,8 +13,10 @@ export function TextFieldAdapter({
       helperText={meta.touched ? meta.error : undefined}
       error={meta.error && meta.touched}
       InputProps={restInput}
+      inputProps={rest}
       onChange={onChange}
       value={value}
+      fullWidth
     />
   );
 }

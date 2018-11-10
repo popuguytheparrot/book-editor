@@ -1,4 +1,4 @@
-import { ADD_BOOK, DELETE_BOOK, EDIT_BOOK, GET_BOOKS } from './types';
+import { ADD_BOOK, DELETE_BOOK, EDIT_BOOK, GET_BOOKS } from 'constants/actionTypes/book';
 
 export function getBooksAction() {
   return {

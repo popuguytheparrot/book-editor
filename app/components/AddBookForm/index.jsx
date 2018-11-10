@@ -11,12 +11,20 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Delete from '@material-ui/icons/Delete';
 
+import dayjs from 'dayjs';
+
 import { validateAuthors } from 'libs/validateAuthors';
 import { validatePageCount } from 'libs/validatePageCount';
 
 import { TextFieldAdapter } from 'components/_adapters/TextFieldAdapter';
 
 import { style } from './styles';
+
+const invalidYear = 1800;
+const invalidReleasedDate = dayjs()
+  .set('date', 1)
+  .set('month', 0)
+  .set('year', 1800);
 
 const onSubmit = values => {
   console.log('values', values);
@@ -25,12 +33,26 @@ const onSubmit = values => {
 const validate = values => {
   console.log('validate', values);
   const errors = {};
+  const publishYear = dayjs(values.publishYear).year();
+  const released = dayjs(values.released);
+
+  // console.log('a', a);
+
   if (!values.title) {
     errors.title = 'Обязательное поле';
   }
   if (!values.pageCount) {
     errors.pageCount = 'Обязательное поле';
   }
+  if (publishYear <= invalidYear) {
+    errors.publishYear = 'Дата должна быть не раньше 1800гг';
+  }
+  if (invalidReleasedDate.isAfter(released)) {
+    errors.released = 'Дата должна быть не раньше 01.01.1800гг';
+  }
+  // if () {
+  //   errors.ISBN = 'Невалидный ISBN';
+  // }
   return errors;
 };
 
@@ -129,8 +151,8 @@ export const AddBookForm = () => (
             <Field
               name="publishingHouse"
               component={TextFieldAdapter}
-              type="Издательство"
-              label="Заголовок"
+              type="text"
+              label="Издательство"
               maxLength="30"
             />
           </Grid>
@@ -138,16 +160,22 @@ export const AddBookForm = () => (
             <Field
               name="publishYear"
               component={TextFieldAdapter}
-              type="text"
+              type="date"
               label="Год публикации"
+              InputLabelProps={{
+                shrink: true
+              }}
             />
           </Grid>
           <Grid item xs>
             <Field
               name="released"
               component={TextFieldAdapter}
-              type="text"
+              type="date"
               label="Дата выхода в тираж"
+              InputLabelProps={{
+                shrink: true
+              }}
             />
           </Grid>
           <Grid item xs>

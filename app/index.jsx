@@ -11,10 +11,9 @@ import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 
 import { Routes } from 'routes';
-// actions
-import { addBookAction } from 'pages/Home/actions';
 // theming and styling
 import { theme } from './theme';
+// actions
 
 const style = {
   background: 'linear-gradient(to right, #f79d00, #64f38c)',
@@ -52,11 +51,7 @@ function mapStateToProps() {
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    addBook(book) {
-      dispatch(addBookAction(book));
-    }
-  };
+  return {};
 }
 
 const ConnectedApp = connect(

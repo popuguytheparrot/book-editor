@@ -40,6 +40,7 @@ const common = merge([
       alias: {
         actions: resolve(__dirname, 'app', 'actions'),
         components: resolve(__dirname, 'app', 'components'),
+        constants: resolve(__dirname, 'app', 'constants'),
         libs: resolve(__dirname, 'libs'),
         mocks: resolve(__dirname, 'app', 'mocks'),
         pages: resolve(__dirname, 'app', 'pages'),

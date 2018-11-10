@@ -1,4 +1,4 @@
-import { ADD_BOOK, DELETE_BOOK, EDIT_BOOK, GET_BOOKS } from 'pages/Home/types';
+import { ADD_BOOK, DELETE_BOOK, EDIT_BOOK, GET_BOOKS } from 'constants/actionTypes/book';
 import books from 'mocks/books';
 
 const initState = {

@@ -36,8 +36,6 @@ const validate = values => {
   const publishYear = dayjs(values.publishYear).year();
   const released = dayjs(values.released);
 
-  // console.log('a', a);
-
   if (!values.title) {
     errors.title = 'Обязательное поле';
   }
@@ -50,7 +48,7 @@ const validate = values => {
   if (invalidReleasedDate.isAfter(released)) {
     errors.released = 'Дата должна быть не раньше 01.01.1800гг';
   }
-  // if () {
+  // if (!values.ISBN) {
   //   errors.ISBN = 'Невалидный ISBN';
   // }
   return errors;

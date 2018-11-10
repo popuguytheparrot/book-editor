@@ -10,6 +10,7 @@ export const Routes = () => (
   <Router>
     <HomePage path="/" />
     <AddBookPage path="/book/add" />
+    <AddBookPage path="/book/:id/edit" edit />
     <NotFound default />
   </Router>
 );

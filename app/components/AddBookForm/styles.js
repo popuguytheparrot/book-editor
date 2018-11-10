@@ -6,5 +6,10 @@ export const style = {
   },
   typo: {
     margin: 8
-  }
+  },
+  fab: {
+    position: 'fixed',
+    bottom: 50,
+    right: 50
+  },
 };

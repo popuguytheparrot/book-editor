@@ -4,7 +4,6 @@ import { Router } from '@reach/router';
 import { NotFound } from 'pages/NotFound';
 import { withReduxHomePage as HomePage } from 'pages/Home';
 import { withReduxAddBookPage as BookPage } from 'pages/Book/AddBook';
-// import { withReduxHomePage as HomePage } from 'pages/Home';
 
 export const Routes = () => (
   <Router>

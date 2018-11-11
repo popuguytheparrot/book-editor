@@ -59,10 +59,10 @@ export const BookForm = ({ edit, onAddBook, onEditBook, book }) => {
   const onSubmit = (values, formApi) => {
     console.log(values);
     if (edit) {
-      onEditBook(values);
+      return onEditBook(values);
     }
     onAddBook(values);
-    formApi.reset();
+    return formApi.reset();
   };
   return (
     <Paper style={style.paper}>
@@ -72,7 +72,7 @@ export const BookForm = ({ edit, onAddBook, onEditBook, book }) => {
       <Form
         onSubmit={onSubmit}
         validate={validate}
-        initialValues={edit ? book : {}}
+        initialValues={edit ? book : { authors: [{ name: '', surname: '' }] }}
         mutators={{
           ...arrayMutators
         }}
@@ -80,7 +80,6 @@ export const BookForm = ({ edit, onAddBook, onEditBook, book }) => {
           handleSubmit,
           form: {
             mutators: { push, pop },
-            reset,
             submitting,
             pristine
           },

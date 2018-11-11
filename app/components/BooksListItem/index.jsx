@@ -27,7 +27,7 @@ const styles = theme => ({
   }
 });
 
-function renderAuthors(authors) {
+function renderAuthors(authors = []) {
   if (authors.length === 1) {
     const [author] = authors;
     return `Автор: ${author.name} ${author.surname}`;

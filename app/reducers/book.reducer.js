@@ -14,6 +14,15 @@ function deleteBook(booksList, bookID) {
   return booksList.filter(book => book.id !== bookID);
 }
 
+function editBook(booksList, editedBook) {
+  return booksList.map(book => {
+    if (book.id === editedBook.id) {
+      return { ...book, ...editedBook };
+    }
+    return book;
+  });
+}
+
 export function booksReducer(state = initState, action) {
   switch (action.type) {
     case GET_BOOKS: {
@@ -40,7 +49,7 @@ export function booksReducer(state = initState, action) {
       return {
         ...state,
         loaded: true,
-        books
+        books: editBook(state.books, action.payload.book)
       };
     }
     default: {

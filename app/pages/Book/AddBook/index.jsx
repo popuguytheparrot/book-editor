@@ -2,64 +2,44 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Grid from '@material-ui/core/Grid';
-import { AddBookForm } from 'components/AddBookForm';
-import Zoom from '@material-ui/core/Zoom';
-import Button from '@material-ui/core/Button';
-import { Link, Match } from '@reach/router';
-import AddIcon from '@material-ui/icons/Add';
+import { BookForm } from 'components/BookForm';
 
-import { getBooksAction } from 'actions/book';
+import { addBookAction, editBookAction } from 'actions/book';
 
-const style = {
-  fab: {
-    position: 'fixed',
-    bottom: 50,
-    right: 50
-  }
-};
+function getBookSelector(books, id) {
+  return books.find(book => book.id === id);
+}
 
-class AddBookPage extends Component {
+class BookPage extends Component {
   render() {
-    // if (!loaded) return null;
+    const { addBook, editBook, edit, book } = this.props;
     return (
       <Grid container justify="center" component="main">
-        <AddBookForm />
-        <Match path="/book/add">
-          {({ match }) =>
-            match && (
-              <Zoom in={match} unmountOnExit>
-                <Button
-                  variant="fab"
-                  color="primary"
-                  style={style.fab}
-                  component={Link}
-                  to="/book/add"
-                >
-                  <AddIcon />
-                </Button>
-              </Zoom>
-            )
-          }
-        </Match>
+        <BookForm onAddBook={addBook} onEditBook={editBook} edit={edit} book={book} />
       </Grid>
     );
   }
 }
 
-function mapStateToProps({ booksList }) {
+function mapStateToProps({ booksList }, ownProps) {
+  const { edit, id } = ownProps;
   const { books, loaded } = booksList;
-  return { books, loaded };
+
+  return { books, loaded, book: getBookSelector(books, id) };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    getBooks() {
-      dispatch(getBooksAction());
+    addBook(bookData) {
+      dispatch(addBookAction(bookData));
     },
+    editBook(bookID) {
+      dispatch(editBookAction(bookID));
+    }
   };
 }
 
 export const withReduxAddBookPage = connect(
   mapStateToProps,
   mapDispatchToProps
-)(AddBookPage);
+)(BookPage);

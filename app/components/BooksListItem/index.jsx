@@ -1,4 +1,5 @@
 import React from 'react';
+import { navigate } from '@reach/router';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -85,7 +86,7 @@ function BooksListItem({
           </Grid>
           <Grid item container justify="space-between">
             <Grid item>
-              <IconButton aria-label="Delete">
+              <IconButton aria-label="Edit" onClick={() => navigate(`/book/${id}/edit`)}>
                 <Edit fontSize="small" />
               </IconButton>
             </Grid>

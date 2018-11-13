@@ -32,7 +32,6 @@ const invalidReleasedDate = dayjs()
   .set('year', 1800);
 
 const validate = values => {
-  console.log('validate', values);
   const errors = {};
   const publishYear = dayjs(values.publishYear).year();
   const released = dayjs(values.released);
@@ -57,11 +56,13 @@ const validate = values => {
 
 export const BookForm = ({ edit, onAddBook, onEditBook, book }) => {
   const onSubmit = (values, formApi) => {
-    console.log(values);
+    const nextid = Math.round(Math.random() * 1e10);
+    const newBook = { id: nextid.toString(), ...values };
+
     if (edit) {
       return onEditBook(values);
     }
-    onAddBook(values);
+    onAddBook(newBook);
     return formApi.reset();
   };
   return (

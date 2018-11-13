@@ -9,10 +9,9 @@ import CssBaseline from '@material-ui/core/CssBaseline/CssBaseline';
 import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
 
 import { configureStore } from 'store';
+import { loadState, saveState } from 'libs/localStorage';
 
 import AppPage from '../app';
-
-const store = configureStore();
 
 const styleNode = document.createComment('insertion-point-jss');
 document.head.insertBefore(styleNode, document.head.firstChild);
@@ -20,6 +19,14 @@ document.head.insertBefore(styleNode, document.head.firstChild);
 const generateClassName = createGenerateClassName();
 const jss = create(jssPreset());
 jss.options.insertionPoint = 'insertion-point-jss';
+// redux store
+const persistedState = loadState();
+const store = configureStore(persistedState);
+
+store.subscribe(() => {
+  console.log('storeSave');
+  saveState(store.getState());
+});
 
 function App() {
   return (

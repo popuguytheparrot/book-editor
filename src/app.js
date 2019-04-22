@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import { hot } from 'react-hot-loader';
 import { Provider } from 'react-redux';
 import { Router } from '@reach/router';
 import { create } from 'jss';
@@ -28,7 +27,7 @@ store.subscribe(() => {
   saveState(store.getState());
 });
 
-function App() {
+export function App() {
   return (
     <Provider store={store}>
       <Fragment>
@@ -42,5 +41,3 @@ function App() {
     </Provider>
   );
 }
-
-export default hot(module)(App);

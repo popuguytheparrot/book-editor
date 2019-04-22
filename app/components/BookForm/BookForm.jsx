@@ -9,6 +9,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
 import IconButton from '@material-ui/core/IconButton';
 import Zoom from '@material-ui/core/Zoom';
 
@@ -78,14 +79,14 @@ export const BookForm = ({ edit, onAddBook, onEditBook, book }) => {
           ...arrayMutators
         }}
         render={({
-          handleSubmit,
-          form: {
-            mutators: { push, pop },
-            submitting,
-            pristine
-          },
-          values
-        }) => (
+                   handleSubmit,
+                   form: {
+                     mutators: { push, pop },
+                     submitting,
+                     pristine
+                   },
+                   values
+                 }) => (
           <form onSubmit={handleSubmit}>
             <Grid container spacing={16} style={style.form} direction="column">
               <Grid item xs>
@@ -188,16 +189,15 @@ export const BookForm = ({ edit, onAddBook, onEditBook, book }) => {
             <Match path="/book/*">
               {({ match }) =>
                 match && (
-                  <Zoom in={match} unmountOnExit>
-                    <Button
-                      variant="fab"
+                  <Zoom in={Boolean(match)} unmountOnExit>
+                    <Fab
                       color="primary"
                       style={style.fab}
                       type="submit"
                       disabled={submitting || pristine}
                     >
                       {edit ? <Save /> : <AddIcon />}
-                    </Button>
+                    </Fab>
                   </Zoom>
                 )
               }

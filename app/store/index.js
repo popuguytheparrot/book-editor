@@ -6,7 +6,7 @@ import { rootReducer } from 'reducers';
 export function configureStore(initialState) {
   const store = createStore(rootReducer, initialState, composeWithDevTools());
 
-  if (module.hot) {
+  if (process.env.NODE_ENV !== 'production' && module.hot) {
     // Enable Webpack hot module replacement for reducers
     module.hot.accept('../reducers', () => {
       const nextRootReducer = require('reducers');

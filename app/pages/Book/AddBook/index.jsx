@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 import Grid from '@material-ui/core/Grid';
@@ -10,19 +10,18 @@ function getBookSelector(books, id) {
   return books.find(book => book.id === id);
 }
 
-class BookPage extends Component {
-  render() {
-    const { addBook, editBook, edit, book } = this.props;
-    return (
-      <Grid container justify="center" component="main">
-        <BookForm onAddBook={addBook} onEditBook={editBook} edit={edit} book={book} />
-      </Grid>
-    );
-  }
+function BookPage(props) {
+  const { addBook, editBook, edit, book } = props;
+
+  return (
+    <Grid container justify="center" component="main">
+      <BookForm onAddBook={addBook} onEditBook={editBook} edit={edit} book={book} />
+    </Grid>
+  );
 }
 
 function mapStateToProps({ booksList }, ownProps) {
-  const { edit, id } = ownProps;
+  const { id } = ownProps;
   const { books, loaded } = booksList;
 
   return { books, loaded, book: getBookSelector(books, id) };

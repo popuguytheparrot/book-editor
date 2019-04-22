@@ -1,6 +1,6 @@
 import React from 'react';
 import { navigate } from '@reach/router';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -10,7 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Edit from '@material-ui/icons/Edit';
 import Delete from '@material-ui/icons/Delete';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     maxWidth: 600,
@@ -25,7 +25,7 @@ const styles = theme => ({
     maxWidth: '100%',
     maxHeight: '100%'
   }
-});
+}));
 
 function renderAuthors(authors = []) {
   if (authors.length === 1) {
@@ -37,7 +37,7 @@ function renderAuthors(authors = []) {
     .slice(0, -2);
 }
 
-function BooksListItem({
+export function BooksListItem({
   id,
   title,
   image,
@@ -47,9 +47,9 @@ function BooksListItem({
   publishYear,
   released,
   ISBN,
-  classes,
   onDeleteBook
 }) {
+  const classes = useStyles();
   return (
     <Paper className={classes.root} style={{ margin: 16 }}>
       <Grid container spacing={16}>
@@ -101,5 +101,3 @@ function BooksListItem({
     </Paper>
   );
 }
-
-export default withStyles(styles)(BooksListItem);

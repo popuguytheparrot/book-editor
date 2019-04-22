@@ -11,5 +11,5 @@ export const style = {
     position: 'fixed',
     bottom: 50,
     right: 50
-  },
+  }
 };

@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link, Match } from '@reach/router';
-import { MuiThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
 import Zoom from '@material-ui/core/Zoom';
 
 import AddIcon from '@material-ui/icons/Add';
@@ -30,7 +30,7 @@ const style = {
 
 function App(props) {
   return (
-    <MuiThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
       <AppBar position="static" style={style}>
         <Toolbar>
@@ -43,21 +43,15 @@ function App(props) {
       <Match path="/">
         {({ match }) =>
           match && (
-            <Zoom in={match} unmountOnExit>
-              <Button
-                variant="fab"
-                color="primary"
-                style={style.fab}
-                component={Link}
-                to="/book/add"
-              >
+            <Zoom in={match.path === '/'} unmountOnExit>
+              <Fab color="primary" style={style.fab} component={Link} to="/book/add">
                 <AddIcon />
-              </Button>
+              </Fab>
             </Zoom>
           )
         }
       </Match>
-    </MuiThemeProvider>
+    </ThemeProvider>
   );
 }
 

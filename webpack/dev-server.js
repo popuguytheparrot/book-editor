@@ -1,16 +1,13 @@
-const { join } = require('path');
-
-const srcPath = join(__dirname, 'src');
-
 module.exports = () => ({
   devServer: {
-    contentBase: [srcPath],
+    contentBase: ['./src/img'],
     historyApiFallback: true,
     hot: true,
     compress: true,
+    overlay: true,
     port: 8080,
     publicPath: '/',
-    overlay: true,
+    // quiet: true,
     clientLogLevel: 'error',
     headers: {
       'Access-Control-Allow-Origin': '*'

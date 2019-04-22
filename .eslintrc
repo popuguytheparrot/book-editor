@@ -19,7 +19,8 @@
   "plugins": [
     "import",
     "jsx-a11y",
-    "react"
+    "react",
+    "react-hooks"
   ],
   "settings": {
     "import/resolver": {
@@ -37,6 +38,8 @@
     "import/prefer-default-export": "off",
     "import/no-extraneous-dependencies": "off",
     "react/jsx-filename-extension": "off",
-    "linebreak-style": "off"
+    "linebreak-style": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   }
 }

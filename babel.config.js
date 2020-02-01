@@ -12,8 +12,6 @@ module.exports = function(api) {
     '@babel/preset-react'
   ];
   const plugins = [
-    '@babel/plugin-proposal-class-properties',
-    '@babel/plugin-syntax-dynamic-import'
   ];
 
   return {

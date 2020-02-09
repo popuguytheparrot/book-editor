@@ -1,6 +1,4 @@
-import { combineReducers } from 'redux';
+// import { combineReducers } from 'redux';
 import { booksReducer } from './book.reducer';
 
-export const rootReducer = combineReducers({
-  booksList: booksReducer
-});
+export const rootReducer = booksReducer;

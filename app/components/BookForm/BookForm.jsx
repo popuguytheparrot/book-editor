@@ -1,5 +1,4 @@
 import React from 'react';
-import { Match } from '@reach/router';
 
 import { Field, Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
@@ -79,16 +78,16 @@ export const BookForm = ({ edit, onAddBook, onEditBook, book }) => {
           ...arrayMutators
         }}
         render={({
-                   handleSubmit,
-                   form: {
-                     mutators: { push, pop },
-                     submitting,
-                     pristine
-                   },
-                   values
-                 }) => (
+          handleSubmit,
+          form: {
+            mutators: { push, pop },
+            submitting,
+            pristine
+          },
+          values
+        }) => (
           <form onSubmit={handleSubmit}>
-            <Grid container spacing={16} style={style.form} direction="column">
+            <Grid container spacing={2} style={style.form} direction="column">
               <Grid item xs>
                 <Field
                   name="title"
@@ -166,9 +165,6 @@ export const BookForm = ({ edit, onAddBook, onEditBook, book }) => {
                   component={TextFieldAdapter}
                   type="year"
                   label="Год публикации"
-                  InputLabelProps={{
-                    shrink: true
-                  }}
                 />
               </Grid>
               <Grid item xs>
@@ -177,31 +173,23 @@ export const BookForm = ({ edit, onAddBook, onEditBook, book }) => {
                   component={TextFieldAdapter}
                   type="date"
                   label="Дата выхода в тираж"
-                  InputLabelProps={{
-                    shrink: true
-                  }}
                 />
               </Grid>
               <Grid item xs>
                 <Field name="ISBN" component={TextFieldAdapter} type="text" label="ISBN" />
               </Grid>
             </Grid>
-            <Match path="/book/*">
-              {({ match }) =>
-                match && (
-                  <Zoom in={Boolean(match)} unmountOnExit>
-                    <Fab
-                      color="primary"
-                      style={style.fab}
-                      type="submit"
-                      disabled={submitting || pristine}
-                    >
-                      {edit ? <Save /> : <AddIcon />}
-                    </Fab>
-                  </Zoom>
-                )
-              }
-            </Match>
+
+            <Zoom in unmountOnExit>
+              <Fab
+                color="primary"
+                style={style.fab}
+                type="submit"
+                disabled={submitting || pristine}
+              >
+                {edit ? <Save /> : <AddIcon />}
+              </Fab>
+            </Zoom>
           </form>
         )}
       />

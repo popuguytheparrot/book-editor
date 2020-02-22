@@ -1,5 +1,5 @@
 import React from 'react';
-import { Provider } from 'react-redux';
+import { context } from '@reatom/react';
 import { Route, useLocation } from 'wouter';
 import { ThemeProvider } from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -58,7 +58,7 @@ export function App() {
   const { appBar, fab, typo } = useStyles();
 
   return (
-    <Provider store={store}>
+    <context.Provider value={store}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <AppBar position="static" className={appBar}>
@@ -85,6 +85,6 @@ export function App() {
           </Fab>
         </Zoom>
       </ThemeProvider>
-    </Provider>
+    </context.Provider>
   );
 }

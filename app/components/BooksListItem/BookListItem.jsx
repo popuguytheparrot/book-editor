@@ -1,7 +1,8 @@
 import React from 'react';
-import { navigate } from '@reach/router';
+import { useLocation } from 'wouter';
 import { makeStyles } from '@material-ui/styles';
 import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
@@ -14,7 +15,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     maxWidth: 600,
-    padding: theme.spacing.unit * 2
+    padding: theme.spacing(2)
   },
   image: {
     width: 128
@@ -50,16 +51,17 @@ export function BooksListItem({
   onDeleteBook
 }) {
   const classes = useStyles();
+  const [, navigate] = useLocation();
   return (
-    <Paper className={classes.root} style={{ margin: 16 }}>
-      <Grid container spacing={16}>
+    <Paper className={classes.root} component={Box} m={1}>
+      <Grid container spacing={1}>
         <Grid item>
           <ButtonBase className={classes.image}>
             <img className={classes.img} alt={title} src={image} style={{ objectFit: 'contain' }} />
           </ButtonBase>
         </Grid>
         <Grid item xs={6} sm container>
-          <Grid item xs container direction="row" spacing={16} style={{ width: 'auto' }}>
+          <Grid item xs container direction="row" spacing={1} style={{ width: 'auto' }}>
             <Grid item xs>
               <Typography gutterBottom variant="h5">
                 {title}

@@ -1,8 +1,7 @@
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
 
-export const theme = createMuiTheme({
-  overrides: {},
-  typography: {
-    useNextVariants: true
-  }
-});
+export const theme = responsiveFontSizes(
+  createMuiTheme({
+    overrides: {}
+  })
+);

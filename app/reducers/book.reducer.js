@@ -1,20 +1,23 @@
-import { ADD_BOOK, DELETE_BOOK, EDIT_BOOK, GET_BOOKS } from 'constants/actionTypes/book';
-import books from 'mocks/books';
+import { declareAtom } from '@reatom/core';
+
+import booksMock from 'mocks/books';
+
+import { getBooks, deleteBook, addBook, editBook } from 'actions/book';
 
 const initState = {
   loaded: false,
   books: []
 };
 
-function addBook(booksList, book) {
+function handleAddBook(booksList, book) {
   return [...booksList, book];
 }
 
-function deleteBook(booksList, bookID) {
+function handleDeleteBook(booksList, bookID) {
   return booksList.filter(book => book.id !== bookID);
 }
 
-function editBook(booksList, editedBook) {
+function handleEditBook(booksList, editedBook) {
   return booksList.map(book => {
     if (book.id === editedBook.id) {
       return { ...book, ...editedBook };
@@ -23,37 +26,22 @@ function editBook(booksList, editedBook) {
   });
 }
 
-export function booksReducer(state = initState, action) {
-  switch (action.type) {
-    case GET_BOOKS: {
-      return {
-        ...state,
-        loaded: true,
-        books
-      };
-    }
-    case ADD_BOOK: {
-      return {
-        ...state,
-        books: addBook(state.books, action.payload.book)
-      };
-    }
-    case DELETE_BOOK: {
-      return {
-        ...state,
-        loaded: true,
-        books: deleteBook(state.books, action.payload.id)
-      };
-    }
-    case EDIT_BOOK: {
-      return {
-        ...state,
-        loaded: true,
-        books: editBook(state.books, action.payload.book)
-      };
-    }
-    default: {
-      return state;
-    }
-  }
-}
+export const bookAtom = declareAtom(initState, on => [
+  on(getBooks, state => ({
+    ...state,
+    loaded: true,
+    books: booksMock
+  })),
+  on(addBook, (state, book) => ({
+    ...state,
+    books: handleAddBook(state.books, book)
+  })),
+  on(deleteBook, (state, id) => ({
+    ...state,
+    books: handleDeleteBook(state.books, id)
+  })),
+  on(editBook, (state, book) => ({
+    ...state,
+    books: handleEditBook(state.books, book)
+  }))
+]);

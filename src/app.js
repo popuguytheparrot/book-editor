@@ -40,7 +40,8 @@ store.subscribe(() => {
 
 const useStyles = makeStyles({
   appBar: {
-    background: 'linear-gradient(to right, #f79d00, #64f38c)'
+    background: 'linear-gradient(to right, #f79d00, #64f38c)',
+    marginBottom: 16
   },
   fab: {
     position: 'fixed',

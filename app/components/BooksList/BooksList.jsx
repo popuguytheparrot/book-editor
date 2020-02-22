@@ -23,4 +23,3 @@ export function BooksList({ books, onDeleteBook }) {
     />
   ));
 }
-

@@ -5,7 +5,7 @@ kaspersky react test-task
 * [React](https://github.com/facebook/react/)
 * [Redux](https://github.com/reduxjs/redux)
 * [Webpack](https://github.com/webpack/webpack)
-* [@reach/router](https://github.com/reach/router)
+* [wouter](https://github.com//molefrog/wouter)
 * [Material UI](https://github.com/mui-org/material-ui)
 
 ## Установка и запуск проекта

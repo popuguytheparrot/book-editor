@@ -1,5 +1,4 @@
 import React from 'react';
-import { Match } from '@reach/router';
 
 import { Field, Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
@@ -61,10 +60,10 @@ export const BookForm = ({ edit, onAddBook, onEditBook, book }) => {
     const newBook = { id: nextid.toString(), ...values };
 
     if (edit) {
-      return onEditBook(values);
+      onEditBook(values);
     }
     onAddBook(newBook);
-    return formApi.reset();
+    setTimeout(formApi.reset)
   };
   return (
     <Paper style={style.paper}>
@@ -79,16 +78,16 @@ export const BookForm = ({ edit, onAddBook, onEditBook, book }) => {
           ...arrayMutators
         }}
         render={({
-                   handleSubmit,
-                   form: {
-                     mutators: { push, pop },
-                     submitting,
-                     pristine
-                   },
-                   values
-                 }) => (
+          handleSubmit,
+          form: {
+            mutators: { push, pop },
+            submitting,
+            pristine
+          },
+          values
+        }) => (
           <form onSubmit={handleSubmit}>
-            <Grid container spacing={16} style={style.form} direction="column">
+            <Grid container spacing={2} style={style.form} direction="column">
               <Grid item xs>
                 <Field
                   name="title"
@@ -112,9 +111,9 @@ export const BookForm = ({ edit, onAddBook, onEditBook, book }) => {
                 <FieldArray name="authors" validate={validateAuthors}>
                   {({ fields }) =>
                     fields.map((name, index) => (
-                      <Grid container key={name} alignItems="center" spacing={8}>
+                      <Grid container key={name} alignItems="center" spacing={2}>
                         <Grid item>
-                          <Typography>{`Автор #${index + 1}`}</Typography>
+                          <Typography variant="overline">{`Автор #${index + 1}`}</Typography>
                         </Grid>
                         <Grid item xs>
                           <Field
@@ -164,7 +163,7 @@ export const BookForm = ({ edit, onAddBook, onEditBook, book }) => {
                 <Field
                   name="publishYear"
                   component={TextFieldAdapter}
-                  type="year"
+                  type="month"
                   label="Год публикации"
                   InputLabelProps={{
                     shrink: true
@@ -186,22 +185,17 @@ export const BookForm = ({ edit, onAddBook, onEditBook, book }) => {
                 <Field name="ISBN" component={TextFieldAdapter} type="text" label="ISBN" />
               </Grid>
             </Grid>
-            <Match path="/book/*">
-              {({ match }) =>
-                match && (
-                  <Zoom in={Boolean(match)} unmountOnExit>
-                    <Fab
-                      color="primary"
-                      style={style.fab}
-                      type="submit"
-                      disabled={submitting || pristine}
-                    >
-                      {edit ? <Save /> : <AddIcon />}
-                    </Fab>
-                  </Zoom>
-                )
-              }
-            </Match>
+
+            <Zoom in unmountOnExit>
+              <Fab
+                color="primary"
+                style={style.fab}
+                type="submit"
+                disabled={submitting || pristine}
+              >
+                {edit ? <Save /> : <AddIcon />}
+              </Fab>
+            </Zoom>
           </form>
         )}
       />

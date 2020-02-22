@@ -1,32 +1,30 @@
-import React, { useEffect, useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useAction, useAtom } from '@reatom/react';
 
 import Grid from '@material-ui/core/Grid';
 
 import { BooksList } from 'components/BooksList';
 
-import { deleteBookAction, editBookAction, getBooksAction } from 'actions/book';
+import { deleteBook, getBooks } from 'actions/book';
+import { bookAtom } from 'reducers';
 
 export function HomePage() {
-  const dispatch = useDispatch();
-  const { books, loaded } = useSelector(state => ({ books: state.books, loaded: state.loaded }));
+  const { books, loaded } = useAtom(bookAtom);
 
-  const getBooks = useCallback(() => dispatch(getBooksAction()), [dispatch]);
-  const editBook = useCallback(book => dispatch(editBookAction(book)), [dispatch]);
-  const deleteBook = useCallback(id => dispatch(deleteBookAction(id)), [dispatch]);
+  const handleGetBooks = useAction(getBooks);
+  const handleDeleteBook = useAction(id => deleteBook(id));
 
   useEffect(() => {
     if (books.length === 0) {
-      console.log(books.length);
-      getBooks();
+      handleGetBooks();
     }
-  }, [getBooks, loaded, books.length]);
+  }, [handleGetBooks, books.length]);
 
   if (!loaded) return null;
 
   return (
     <Grid container justify="center" component="main">
-      <BooksList books={books} onEditBook={editBook} onDeleteBook={deleteBook} />
+      <BooksList books={books} onDeleteBook={handleDeleteBook} />
     </Grid>
   );
 }

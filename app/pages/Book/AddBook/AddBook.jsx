@@ -1,26 +1,31 @@
-import React, { useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useAction, useAtom } from '@reatom/react';
 
 import Grid from '@material-ui/core/Grid';
 import { BookForm } from 'components/BookForm';
 
-import { addBookAction, editBookAction } from 'actions/book';
+import { addBook, editBook } from 'actions/book';
+import { bookAtom } from 'reducers';
 
 function getBookSelector(books, id) {
   return books.find(book => book.id === id);
 }
 
 export function AddBookPage({ id, edit }) {
-  const dispatch = useDispatch();
+  const { books } = useAtom(bookAtom);
+  const bookState = getBookSelector(books, id);
 
-  const book = useSelector(({ books }) => getBookSelector(books, id));
-
-  const editBook = useCallback(bookId => dispatch(editBookAction(bookId)), [dispatch]);
-  const addBook = useCallback(newBook => dispatch(addBookAction(newBook)), [dispatch]);
+  const handleEditBook = useAction(book => editBook(book));
+  const handleAddBook = useAction(book => addBook(book));
 
   return (
     <Grid container justify="center" component="main">
-      <BookForm onAddBook={addBook} onEditBook={editBook} edit={edit} book={book} />
+      <BookForm
+        onAddBook={handleAddBook}
+        onEditBook={handleEditBook}
+        edit={edit}
+        book={bookState}
+      />
     </Grid>
   );
 }

@@ -60,10 +60,10 @@ export const BookForm = ({ edit, onAddBook, onEditBook, book }) => {
     const newBook = { id: nextid.toString(), ...values };
 
     if (edit) {
-      return onEditBook(values);
+      onEditBook(values);
     }
     onAddBook(newBook);
-    return formApi.reset();
+    setTimeout(formApi.reset)
   };
   return (
     <Paper style={style.paper}>
@@ -111,9 +111,9 @@ export const BookForm = ({ edit, onAddBook, onEditBook, book }) => {
                 <FieldArray name="authors" validate={validateAuthors}>
                   {({ fields }) =>
                     fields.map((name, index) => (
-                      <Grid container key={name} alignItems="center" spacing={8}>
+                      <Grid container key={name} alignItems="center" spacing={2}>
                         <Grid item>
-                          <Typography>{`Автор #${index + 1}`}</Typography>
+                          <Typography variant="overline">{`Автор #${index + 1}`}</Typography>
                         </Grid>
                         <Grid item xs>
                           <Field
@@ -163,8 +163,11 @@ export const BookForm = ({ edit, onAddBook, onEditBook, book }) => {
                 <Field
                   name="publishYear"
                   component={TextFieldAdapter}
-                  type="year"
+                  type="month"
                   label="Год публикации"
+                  InputLabelProps={{
+                    shrink: true
+                  }}
                 />
               </Grid>
               <Grid item xs>
@@ -173,6 +176,9 @@ export const BookForm = ({ edit, onAddBook, onEditBook, book }) => {
                   component={TextFieldAdapter}
                   type="date"
                   label="Дата выхода в тираж"
+                  InputLabelProps={{
+                    shrink: true
+                  }}
                 />
               </Grid>
               <Grid item xs>

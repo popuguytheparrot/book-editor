@@ -60,10 +60,10 @@ export const BookForm = ({ edit, onAddBook, onEditBook, book }) => {
     const newBook = { id: nextid.toString(), ...values };
 
     if (edit) {
-      onEditBook(values);
+      return onEditBook(values);
     }
-    onAddBook(newBook);
-    setTimeout(formApi.reset)
+    setTimeout(formApi.reset);
+    return onAddBook(newBook);
   };
   return (
     <Paper style={style.paper}>
